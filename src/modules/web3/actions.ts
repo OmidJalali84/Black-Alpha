@@ -1,10 +1,4 @@
-import {
-  formatEther,
-  parseEther,
-  encodePacked,
-  keccak256,
-  parseUnits,
-} from "viem";
+import { formatEther, parseEther, encodePacked, keccak256 } from "viem";
 import { abiMain, abiUsd } from "./abi";
 import { config, contractMainAddr, contractUsdAddr } from "./config";
 import { useReadContract } from "wagmi";
