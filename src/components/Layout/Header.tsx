@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { Link } from "react-router-dom";
-import LogoHeader from "../../assets/logo-header.png";
+import LogoHeader from "../../assets/logo.svg";
 
 export default function Header() {
   const { isConnected } = useAccount();
@@ -22,11 +22,21 @@ export default function Header() {
   return (
     // todo fix 3 pixel scroll snapping off on mobile size
     <nav className="navbar scroll-m-0 bg-cyan-500/10 backdrop-blur sticky top-0 border-b-2 border-gray-700 z-[999]">
-      <div className="navbar-start">
+      <div className="navbar-start" style={{ position: "relative" }}>
         <Link to={"/"}>
-          <img src={LogoHeader} alt="" width={"50px"} />
+          <img
+            src={LogoHeader}
+            alt=""
+            width={"300px"}
+            style={{ position: "absolute", top: "-100px", left: "-120px" }}
+          />
         </Link>
-        <div className="ml-3 text-xl font-bold">Vigor</div>
+        <div
+          className="ml-3 text-xl font-bold"
+          style={{ position: "absolute", left: "50px" }}
+        >
+          Rifex
+        </div>
       </div>
 
       <div className="navbar-center hidden lg:flex">
