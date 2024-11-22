@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { Link } from "react-router-dom";
-import LogoHeader from "../../assets/logo.svg";
+import LogoHeader from "../../../public/logo2.svg";
 
 export default function Header() {
   const { isConnected } = useAccount();

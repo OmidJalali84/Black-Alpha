@@ -6,7 +6,7 @@ export default function Plans() {
     <section className={"px-8 md:px-20 bg-base-100 py-8 mx-2 rounded-2xl"}>
       <h2 className={"mb-8 text-4xl font-bold shadow"}> Plans</h2>
       <p className="text-xl mb-10">
-        Vigor revenue plan has two percentage styles Both income plan are
+        Rifex revenue plan has two percentage styles Both income plan are
         connected gold and diamond.
       </p>
 

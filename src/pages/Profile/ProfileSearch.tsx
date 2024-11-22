@@ -71,14 +71,14 @@ export default function ProfileSearch() {
         <span className={"text-md text-gray-200"}>Referral Link </span>
         <br />
         <span className={"text-sm"}>
-          https://vigor.com/register?ref={data.username}
+          https://Rifex.com/register?ref={data.username}
         </span>
         <button
           className={
             "w-full btn border-0 bg-blue-600 text-white/80 rounded-full mt-2"
           }
           onClick={() =>
-            yankClipboard("https://vigor.com/register?ref=" + data.username)
+            yankClipboard("https://Rifex.com/register?ref=" + data.username)
           }
         >
           Copy Link

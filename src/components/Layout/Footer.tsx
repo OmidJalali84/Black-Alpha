@@ -44,10 +44,9 @@ export default function Footer() {
               to="/"
               className="font-bold gap-2 hover:text-gray-300 inline-flex items-center leading-none mb-6 text-3xl text-white uppercase"
             >
-              <span>Black Alpha</span>
+              <span>Rifex</span>
             </Link>
-            <p className="font-light mb-4">
-            </p>
+            <p className="font-light mb-4"></p>
           </div>
         </div>
 

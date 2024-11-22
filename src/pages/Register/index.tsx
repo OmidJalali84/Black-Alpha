@@ -42,7 +42,7 @@ function Register() {
 
   const [waitWeb3, setWaitWeb3] = useState(false);
   const isLoading = () => {
-    return isConnected && (getAllowanceFetchStatus == 'fetching' || waitWeb3);
+    return isConnected && (getAllowanceFetchStatus == "fetching" || waitWeb3);
   };
 
   useEffect(() => {
@@ -97,16 +97,15 @@ function Register() {
         }
 
         // @ts-ignore
-        const registerTransaction = await registerUser(username.toLowerCase(), referral);
-        toast.info(
-          "Register request sent..."
+        const registerTransaction = await registerUser(
+          username.toLowerCase(),
+          referral
         );
+        toast.info("Register request sent...");
         await waitForTransactionReceipt(config, {
           hash: registerTransaction,
-        })
-        toast.info(
-          "Registered successfuly!"
-        );
+        });
+        toast.info("Registered successfuly!");
         navigate(Path.DASHBOARD);
       } else {
         await approveUser();
@@ -137,7 +136,7 @@ function Register() {
     <main className={"mx-auto max-w-screen-xl"}>
       <div className={"flex flex-col gap-6 pt-12 px-10 mb-10"}>
         <div className={"py-4"}>
-          <span className={"font-bold text-2xl "}>Register stage in Vigor</span>
+          <span className={"font-bold text-2xl "}>Register stage in Rifex</span>
           <br />
           <span>
             Please connect your wallet and then go through the register process
@@ -181,10 +180,13 @@ function Register() {
                       const approveTransaction = await approveUser();
                       await waitForTransactionReceipt(config, {
                         hash: approveTransaction,
-                      })
+                      });
                       await refetchAllowance();
                     } catch (err: any) {
-                      if (err.name === "TransactionExecutionError" && /rejected/.test(err.message)) {
+                      if (
+                        err.name === "TransactionExecutionError" &&
+                        /rejected/.test(err.message)
+                      ) {
                         toast.error("User rejected approval");
                       } else {
                         toast.error(String(err.message));
@@ -193,12 +195,11 @@ function Register() {
                     setWaitWeb3(false);
                   }}
                 >
-                  {
-                    isLoading() ?
-                      <span className="loading loading-dots loading-md text-gray-500"></span>
-                      :
-                      <span>Continue</span>
-                  }
+                  {isLoading() ? (
+                    <span className="loading loading-dots loading-md text-gray-500"></span>
+                  ) : (
+                    <span>Continue</span>
+                  )}
                 </button>
               </div>
             </StepContent>
@@ -244,12 +245,11 @@ function Register() {
                     setWaitWeb3(false);
                   }}
                 >
-                  {
-                    isLoading() ?
-                      <span className="loading loading-dots loading-md text-gray-500"></span>
-                      :
-                      <span>Continue</span>
-                  }
+                  {isLoading() ? (
+                    <span className="loading loading-dots loading-md text-gray-500"></span>
+                  ) : (
+                    <span>Continue</span>
+                  )}
                 </button>
               </div>
             </StepContent>
@@ -307,12 +307,11 @@ function Register() {
                   className={"btn btn-primary"}
                   onClick={submitUser}
                 >
-                  {
-                    isLoading() ?
-                      <span className="loading loading-dots loading-md text-gray-500"></span>
-                      :
-                      <span>Submit</span>
-                  }
+                  {isLoading() ? (
+                    <span className="loading loading-dots loading-md text-gray-500"></span>
+                  ) : (
+                    <span>Submit</span>
+                  )}
                 </button>
               </form>
             </StepContent>

@@ -26,27 +26,18 @@ export default function Dashboard() {
   const handleOpen = () => setModalClose(true);
   const navigate = useNavigate();
 
-  const {
-    data: userInfo,
-    refetch: refetchUserInfo
-  } = getUserInfo(
+  const { data: userInfo, refetch: refetchUserInfo } = getUserInfo(
     undefined,
-    isConnected ? address : zeroAddr,
+    isConnected ? address : zeroAddr
   );
 
-  const {
-    data: getUserStageDetails,
-    refetch: refetchUserStageData
-  } = getUserStageData(
-    undefined,
-    isConnected ? address : zeroAddr,
-    0
-  );
+  const { data: getUserStageDetails, refetch: refetchUserStageData } =
+    getUserStageData(undefined, isConnected ? address : zeroAddr, 0);
 
   const reloadProfileData = async () => {
     await refetchUserInfo();
     await refetchUserStageData();
-  }
+  };
 
   const profileBannerData: PropsProfileBanner = {
     walletAddr: address,
@@ -112,14 +103,14 @@ export default function Dashboard() {
         <span className={"text-md text-gray-200"}>Referral Link </span>
         <br />
         <span className={"text-sm"}>
-          https://vigor.com/register?ref={data.username}
+          https://rifex.com/register?ref={data.username}
         </span>
         <button
           className={
             "w-full btn border-0 bg-blue-600 text-white/80 rounded-lg mt-2"
           }
           onClick={() =>
-            yankClipboard("https://vigor.com/register?ref=" + data.username)
+            yankClipboard("https://rifex.com/register?ref=" + data.username)
           }
         >
           Copy Link
@@ -133,7 +124,9 @@ export default function Dashboard() {
           "bg-gradient-to-r from-sky-900 from-20% to-base-200 my-2 rounded-lg flex justify-between gap-3 p-4 mt-2"
         }
       >
-        <span className={"flex items-center text-md font-bold text-white/80"}>Diamond Earn: ${data.diamondEarn}</span>
+        <span className={"flex items-center text-md font-bold text-white/80"}>
+          Diamond Earn: ${data.diamondEarn}
+        </span>
         <button
           className={"btn border-2 border-sky-800/60 text-white/80 rounded-lg"}
           onClick={handleOpen}
@@ -166,10 +159,7 @@ export default function Dashboard() {
               <CloseIcon className="w-full" />
             </button>
           </div>
-          <Withdraw
-            withdrawValue={data.diamondEarn}
-            walletAddress={address}
-          />
+          <Withdraw withdrawValue={data.diamondEarn} walletAddress={address} />
         </Box>
       </Modal>
     </main>
