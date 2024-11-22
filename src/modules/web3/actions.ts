@@ -16,7 +16,7 @@ export function hashAddr(addr: any) {
   const hash = keccak256(
     encodePacked(["address", "string"], [addr, "hashMakerNonce"])
   );
-  return BigNumber.from(hash).toBigInt(); // Converts hexadecimal to BigInt
+  return BigNumber.from(hash).toBigInt(); // Converts hexadecimal to BigInt.
 }
 
 export function getAllowanceValue(address: any) {
