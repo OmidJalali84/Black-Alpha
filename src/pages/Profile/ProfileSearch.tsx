@@ -1,9 +1,5 @@
 import { useParams } from "react-router-dom";
-import {
-  getUserInfo,
-  getUserStageData,
-  hashAddr,
-} from "../../modules/web3/actions";
+import { getUserInfo, getUserStageData } from "../../modules/web3/actions";
 import ProfileBanner, {
   PropsProfileBanner,
 } from "../../components/profile/ProfileBanner";
