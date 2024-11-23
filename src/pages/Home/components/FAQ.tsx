@@ -26,7 +26,8 @@ export default function FAQ() {
     },
     {
       question: "How can I earn with Rifex?",
-      answer: "",
+      answer:
+        "You can earn by introducing your friends through the referral link",
     },
   ];
   return (

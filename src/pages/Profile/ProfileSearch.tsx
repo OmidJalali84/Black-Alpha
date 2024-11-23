@@ -1,5 +1,9 @@
 import { useParams } from "react-router-dom";
-import { getUserInfo, getUserStageData } from "../../modules/web3/actions";
+import {
+  getUserInfo,
+  getUserStageData,
+  hashAddr,
+} from "../../modules/web3/actions";
 import ProfileBanner, {
   PropsProfileBanner,
 } from "../../components/profile/ProfileBanner";
@@ -13,9 +17,11 @@ import { useEffect } from "react";
 
 export default function ProfileSearch() {
   const { username } = useParams();
+
   const navigate = useNavigate();
 
   const { data: userInfo } = getUserInfo(username);
+
   useEffect(() => {
     (async () => {
       if (userInfo?.[13] === "Unregistered User") {

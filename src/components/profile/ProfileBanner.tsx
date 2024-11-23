@@ -1,7 +1,8 @@
 import { toast } from "react-toastify";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { Link } from "react-router-dom";
-import ProfilePicture from "../../assets/profile/default-profile.jpg";
+// import ProfilePicture from "../../assets/profile/default-profile.jpg";
+import ProfilePicture from "../../../public/logo3.svg";
 import TimeAgo from "timeago-react";
 
 function copyAddress(address: any) {
@@ -40,7 +41,13 @@ export default function ProfileBanner({
           }
         >
           <span className="absolute right-4 bottom-2 flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+            <span
+              className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"
+              style={{
+                zIndex: "10",
+                backgroundColor: "oklch(0.83 0.14 207.67)",
+              }}
+            ></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
           </span>
           <div className={"relative  bg-white rounded-full w-fit"}>
@@ -48,13 +55,16 @@ export default function ProfileBanner({
               src={ProfilePicture}
               className={" rounded-full w-[110px]"}
               alt=""
+              style={{ width: "70px" }}
             />
           </div>
         </div>
         <div className={"flex flex-col gap-1 mt-8 "}>
           <span className={"text-white  max-sm:text-sm"}>
             Address:{" "}
-            {walletAddr === undefined ? "loading" : walletAddr?.slice(0, 5) + "..." + walletAddr?.slice(37, 42)}
+            {walletAddr === undefined
+              ? "loading"
+              : walletAddr?.slice(0, 5) + "..." + walletAddr?.slice(37, 42)}
             <button
               onClick={() => copyAddress(walletAddr)}
               className={"font-bold text-blue-700 md:text-lg rounded-full mb-1"}

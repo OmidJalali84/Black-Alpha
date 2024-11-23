@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { userTree } from "../../modules/web3/actions";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
 import ReactFlow, {
   ReactFlowProvider,
   Panel,
@@ -155,7 +155,7 @@ function LayoutFlow({ username, tree }: any) {
   const { fitView } = useReactFlow();
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges] = useEdgesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   useEffect(() => {
     const [genNodes, genEdges] = generateTree(username, tree);
     // docs: https://github.com/dagrejs/dagre/wiki#configuring-the-layout
@@ -231,6 +231,7 @@ function LayoutFlow({ username, tree }: any) {
       nodes={nodes}
       edges={edges}
       onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
       onNodeClick={(e) => {
         onUpdateChild(e);
       }}
@@ -253,6 +254,7 @@ function LayoutFlow({ username, tree }: any) {
 
 export default function ProfileChart() {
   const { username } = useParams();
+  const navigate = useNavigate(); // Initialize useNavigate
   const [tree, setTree] = useState(["loading"]);
 
   useEffect(() => {
@@ -265,6 +267,10 @@ export default function ProfileChart() {
 
   return (
     <section style={{ minHeight: "85vh" }}>
+      <button onClick={() => navigate(-1)} className="back-arrow">
+        &#8592; Back
+      </button>{" "}
+      {/* Add back arrow button */}
       {tree[0] == "loading" ? (
         "loading chart..."
       ) : (

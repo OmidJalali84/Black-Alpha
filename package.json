@@ -12,6 +12,7 @@
     "@dagrejs/dagre": "^1.1.2",
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
+    "@fortawesome/fontawesome-free": "^6.7.1",
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
     "@rollup/plugin-inject": "^5.0.5",
