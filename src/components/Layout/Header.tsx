@@ -24,19 +24,9 @@ export default function Header() {
     <nav className="navbar scroll-m-0 bg-cyan-500/10 backdrop-blur sticky top-0 border-b-2 border-gray-700 z-[999]">
       <div className="navbar-start" style={{ position: "relative" }}>
         <Link to={"/"}>
-          <img
-            src={LogoHeader}
-            alt=""
-            width={"300px"}
-            style={{ position: "absolute", top: "-100px", left: "-120px" }}
-          />
+          <img src={LogoHeader} alt="" className="logo" />
         </Link>
-        <div
-          className="ml-3 text-xl font-bold"
-          style={{ position: "absolute", left: "50px" }}
-        >
-          Rifex
-        </div>
+        <div className="ml-3 text-xl font-bold">Rifex</div>
       </div>
 
       <div className="navbar-center hidden lg:flex">

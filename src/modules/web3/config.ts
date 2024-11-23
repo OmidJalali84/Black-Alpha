@@ -9,8 +9,8 @@ export const contractUsdAddr = "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063";
 // walletconnect
 const projectId = "b8479a23d56f952664cd377ed894ed16"; // main
 const metadata = {
-  name: "BlackAlpha",
-  description: "BlackAlpha",
+  name: "Rifex",
+  description: "Rifex",
   url: "https://web3modal.com",
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };

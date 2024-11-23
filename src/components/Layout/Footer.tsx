@@ -54,7 +54,7 @@ export default function Footer() {
           <hr className="mb-4 opacity-20" />
           <div className="flex flex-wrap -mx-4  items-center">
             <div className="px-4 py-2 w-full md:flex-1">
-              <p>&copy; 2022 - 2023. All Rights Reserved - BlackAlpha</p>
+              <p>&copy; 2022 - 2023. All Rights Reserved - Rifex</p>
             </div>
             <div className="px-4 py-2 w-full sm:w-auto">
               <Link to="#" className="hover:text-primary-600 text-primary-500">
