@@ -42,13 +42,12 @@ function Register() {
 
   const [waitWeb3, setWaitWeb3] = useState(false);
   const isLoading = () => {
-    return isConnected && (getAllowanceFetchStatus == "fetching" || waitWeb3);
+    return isConnected && (getAllowanceFetchStatus === "fetching" || waitWeb3);
   };
 
   useEffect(() => {
     if (userInfo && userInfo[13] === "Active User") {
       navigate(Path.DASHBOARD);
-
       return;
     }
   }, [userInfo]);
@@ -71,6 +70,7 @@ function Register() {
 
   const [refUsername, setRefUsername] = useState(searchParams.get("ref") ?? "");
   const [username, setUsername] = useState(searchParams.get("usr") ?? "");
+  const [hasReferral, setHasReferral] = useState(false); // New state for check mark
 
   const submitUser = async () => {
     // if not connected to walletconnect open dialog
@@ -82,21 +82,16 @@ function Register() {
     if (userInfo && userInfo[13] === "Active User") {
       toast.success("You Have Already Registered!");
       navigate(Path.DASHBOARD);
-
       return;
     }
 
     try {
       setWaitWeb3(true);
-      // fixme: allowance value is the minimum value needed for contract
       if (allowanceAmount && fmtEther(allowanceAmount) >= 33) {
-        // @ts-ignore
-        const referral = await getAutoReferral(refUsername.toLowerCase());
-        if (referral.trim() === "") {
-          throw new Error("Referral not found!");
-        }
+        const referral = hasReferral
+          ? await getAutoReferral(refUsername.toLowerCase())
+          : zeroAddr;
 
-        // @ts-ignore
         const registerTransaction = await registerUser(
           username.toLowerCase(),
           referral
@@ -105,7 +100,7 @@ function Register() {
         await waitForTransactionReceipt(config, {
           hash: registerTransaction,
         });
-        toast.info("Registered successfuly!");
+        toast.info("Registered successfully!");
         navigate(Path.DASHBOARD);
       } else {
         await approveUser();
@@ -124,7 +119,7 @@ function Register() {
             break;
           default:
             toast.error(err.message);
-            console.log(err);
+            console.error(err);
         }
       }
     }
@@ -211,34 +206,47 @@ function Register() {
             </StepLabel>
             <StepContent>
               <Typography className={styles.description}>
-                Enter your referral username:
+                Do you have a referral?
               </Typography>
               <div className={styles.input}>
-                <input
-                  type="text"
-                  name={"referral"}
-                  disabled={searchParams.get("ref") ? true : false}
-                  placeholder={"username"}
-                  className={"input input-secondary w-full"}
-                  defaultValue={refUsername}
-                  onChange={(e) => {
-                    setRefUsername(e.target.value);
-                  }}
-                />
+                <label className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={hasReferral}
+                    onChange={(e) => setHasReferral(e.target.checked)}
+                    className="checkbox"
+                  />
+                  <span>Yes, I have a referral</span>
+                </label>
+
+                {hasReferral && (
+                  <input
+                    type="text"
+                    name={"referral"}
+                    disabled={searchParams.get("ref") ? true : false}
+                    placeholder={"username"}
+                    className={"input input-secondary w-full mt-2"}
+                    defaultValue={refUsername}
+                    onChange={(e) => {
+                      setRefUsername(e.target.value);
+                    }}
+                  />
+                )}
 
                 <button
                   disabled={isLoading()}
-                  className={"btn btn-primary"}
+                  className={"btn btn-primary mt-3"}
                   onClick={async () => {
                     setWaitWeb3(true);
                     try {
                       if (
+                        hasReferral &&
                         (
                           await getAutoReferral(refUsername.toLowerCase())
                         ).trim() === ""
-                      )
-                        throw Error("Referral not found!");
-                      else setActiveStep(3);
+                      ) {
+                        throw new Error("Referral Is Not Valid");
+                      } else setActiveStep(3);
                     } catch (err: any) {
                       toast.error(String(err.message));
                     }
@@ -291,26 +299,26 @@ function Register() {
                   <div className={"text-center"}>
                     <span>Diamond </span>
                     <br />
-                    <span>22 </span>
+                    <span>33 </span>
                     <span className={"text-green-600"}>$</span>
                   </div>
                   <div className={"text-center"}>
-                    <span>Total</span>
+                    <span>Platinum </span>
                     <br />
-                    <span>33 </span>
+                    <span>66 </span>
                     <span className={"text-green-600"}>$</span>
                   </div>
                 </div>
 
                 <button
+                  type="submit"
                   disabled={isLoading()}
-                  className={"btn btn-primary"}
-                  onClick={submitUser}
+                  className={"btn btn-primary mt-3"}
                 >
                   {isLoading() ? (
                     <span className="loading loading-dots loading-md text-gray-500"></span>
                   ) : (
-                    <span>Submit</span>
+                    <span>Register</span>
                   )}
                 </button>
               </form>
