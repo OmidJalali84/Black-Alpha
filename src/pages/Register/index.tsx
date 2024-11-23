@@ -90,12 +90,13 @@ function Register() {
       if (allowanceAmount && fmtEther(allowanceAmount) >= 33) {
         const referral = hasReferral
           ? await getAutoReferral(refUsername.toLowerCase())
-          : zeroAddr;
+          : "";
 
         const registerTransaction = await registerUser(
           username.toLowerCase(),
           referral
         );
+
         toast.info("Register request sent...");
         await waitForTransactionReceipt(config, {
           hash: registerTransaction,
@@ -106,6 +107,7 @@ function Register() {
         await approveUser();
       }
     } catch (err: any) {
+      console.log(err);
       if (err.name === "ContractFunctionExecutionError") {
         switch (true) {
           case /exceeds balance/.test(err.message):
@@ -314,6 +316,7 @@ function Register() {
                   type="submit"
                   disabled={isLoading()}
                   className={"btn btn-primary mt-3"}
+                  onClick={submitUser}
                 >
                   {isLoading() ? (
                     <span className="loading loading-dots loading-md text-gray-500"></span>
