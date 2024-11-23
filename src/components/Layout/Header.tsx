@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { Link } from "react-router-dom";
-import LogoHeader from "../../../public/logo2.svg";
+import LogoHeader from "../../../public/logo test.svg";
 
 export default function Header() {
   const { isConnected } = useAccount();
@@ -26,7 +26,6 @@ export default function Header() {
         <Link to={"/"}>
           <img src={LogoHeader} alt="" className="logo" />
         </Link>
-        <div className="ml-3 text-xl font-bold">Rifex</div>
       </div>
 
       <div className="navbar-center hidden lg:flex">

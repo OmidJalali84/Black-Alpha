@@ -7,24 +7,16 @@ main {
 }
 
 .logo {
-  width: 300px;
+  width: 350px;
   position: absolute;
-  top: -100px;
-  left: -120px;
-}
-.ml-3 {
-  position: absolute;
-  left: 50px;
+  top: -116px;
+  left: -110px;
 }
 
 @media (max-width: 768px) {
   .logo {
-    width: 300px;
-    top: -62px;
-    left: -80px;
-  }
-
-  .ml-3 {
-    left: 30px;
+    width: 350px;
+    top: -63px;
+    left: -60px;
   }
 }
