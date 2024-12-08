@@ -60,6 +60,11 @@ export default function ProfileSearch() {
     upgradeAmount: parseInt(userInfo?.[12] ?? "0"),
   };
 
+  useEffect(() => {
+    if (data.diamondEarn)
+      console.log(parseFloat(data.diamondEarn.slice(8, 12)));
+  }, [data]);
+
   return (
     <main
       className={
@@ -73,14 +78,14 @@ export default function ProfileSearch() {
         <span className={"text-md text-gray-200"}>Referral Link </span>
         <br />
         <span className={"text-sm"}>
-          https://Rifex.com/register?ref={data.username}
+          https://Rifex.io/register?ref={data.username}
         </span>
         <button
           className={
             "w-full btn border-0 bg-blue-600 text-white/80 rounded-full mt-2"
           }
           onClick={() =>
-            yankClipboard("https://Rifex.com/register?ref=" + data.username)
+            yankClipboard("https://Rifex.io/register?ref=" + data.username)
           }
         >
           Copy Link

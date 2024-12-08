@@ -58,7 +58,7 @@ export default function Dashboard() {
     teamPaid: parseInt(userInfo?.[10] ?? "0") + parseInt(userInfo?.[11] ?? "0"),
     leftUser: userInfo?.[4] || "nobody",
     rightUser: userInfo?.[5] || "nobody",
-    diamondEarn: parseInt(userInfo?.[7].slice(8, 20) ?? "0"),
+    diamondEarn: parseInt(userInfo?.[7].slice(8, 12) ?? "0"),
     leftUsersCount: userInfo?.[8],
     rightUsersCount: userInfo?.[9],
     stageValue: parseInt(userInfo?.[3] ?? "0"),
@@ -103,14 +103,14 @@ export default function Dashboard() {
         <span className={"text-md text-gray-200"}>Referral Link </span>
         <br />
         <span className={"text-sm"}>
-          https://rifex.com/register?ref={data.username}
+          https://rifex.io/register?ref={data.username}
         </span>
         <button
           className={
             "w-full btn border-0 bg-blue-600 text-white/80 rounded-lg mt-2"
           }
           onClick={() =>
-            yankClipboard("https://rifex.com/register?ref=" + data.username)
+            yankClipboard("https://rifex.io/register?ref=" + data.username)
           }
         >
           Copy Link
