@@ -58,7 +58,7 @@ export default function Dashboard() {
     teamPaid: parseInt(userInfo?.[10] ?? "0") + parseInt(userInfo?.[11] ?? "0"),
     leftUser: userInfo?.[4] || "nobody",
     rightUser: userInfo?.[5] || "nobody",
-    diamondEarn: parseInt(userInfo?.[7].slice(8, 12) ?? "0"),
+    diamondEarn: userInfo?.[7].slice(8, 12) ?? "0",
     leftUsersCount: userInfo?.[8],
     rightUsersCount: userInfo?.[9],
     stageValue: parseInt(userInfo?.[3] ?? "0"),

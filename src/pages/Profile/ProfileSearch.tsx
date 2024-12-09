@@ -61,9 +61,9 @@ export default function ProfileSearch() {
   };
 
   useEffect(() => {
-    if (data.diamondEarn)
-      console.log(parseFloat(data.diamondEarn.slice(8, 12)));
-  }, [data]);
+    if (userInfo)
+      console.log(userInfo?.[7].slice(8, 12));
+  }, [userInfo]);
 
   return (
     <main

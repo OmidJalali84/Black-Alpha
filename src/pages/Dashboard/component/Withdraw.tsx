@@ -16,7 +16,7 @@ export default function Withdraw(prop) {
 
   const maxSelect = (e) => {
     e.preventDefault();
-    amountValue.current.value = parseInt(prop.withdrawValue);
+    amountValue.current.value = parseFloat(prop.withdrawValue);
   };
 
   const setMyAddress = (e) => {
@@ -27,15 +27,22 @@ export default function Withdraw(prop) {
   const callWithdraw = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setLoading(true)
+    setLoading(true);
     try {
-      const withdrawTransaction = await withdraw(e.target.amount.value, e.target.recepient.value, isDai);
+      const withdrawTransaction = await withdraw(
+        parseFloat(e.target.amount.value),
+        e.target.recepient.value,
+        isDai
+      );
       await waitForTransactionReceipt(config, {
         hash: withdrawTransaction,
-      })
+      });
       toast.success("Request sent! check your wallet...");
     } catch (err: any) {
-      if (err.name === "TransactionExecutionError" && /rejected/.test(err.message)) {
+      if (
+        err.name === "TransactionExecutionError" &&
+        /rejected/.test(err.message)
+      ) {
         toast.error("User rejected approval");
       } else {
         toast.error(String(err.message));
@@ -72,19 +79,14 @@ export default function Withdraw(prop) {
             </div>
           </div>
           <div className="join w-full">
-            <span onClick={() => setIsDai(!isDai)} className="btn input-bordered join-item ">
+            <span
+              onClick={() => setIsDai(!isDai)}
+              className="btn input-bordered join-item "
+            >
               {isDai ? (
-                <img
-                  alt={"DAI"}
-                  className={"inline w-6"}
-                  src={DaiLogo}
-                />
+                <img alt={"DAI"} className={"inline w-6"} src={DaiLogo} />
               ) : (
-                <img
-                  alt={"MATIC"}
-                  className={"inline w-6"}
-                  src={MaticLogo}
-                />
+                <img alt={"MATIC"} className={"inline w-6"} src={MaticLogo} />
               )}
             </span>
             <input
@@ -96,7 +98,10 @@ export default function Withdraw(prop) {
             />
             <span className="btn input-bordered join-item ">$</span>
           </div>
-          <div className="inline text-sm ml-2 mt-1 text-gray-300/90" onClick={() => setIsDai(!isDai)}>
+          <div
+            className="inline text-sm ml-2 mt-1 text-gray-300/90"
+            onClick={() => setIsDai(!isDai)}
+          >
             <span onClick={(e) => e.preventDefault()}>
               <CachedIcon className="mr-1" />
               Click to change to {isDai ? "MATIC" : "DAI"}
@@ -105,12 +110,13 @@ export default function Withdraw(prop) {
         </div>
 
         <div className={"flex flex-col"}>
-          <div className={"font-bold mb-2 flex flex-row items-center justify-between"}>
+          <div
+            className={
+              "font-bold mb-2 flex flex-row items-center justify-between"
+            }
+          >
             <span>To (Address):</span>
-            <button
-              className={"text-blue-700"}
-              onClick={setMyAddress}
-            >
+            <button className={"text-blue-700"} onClick={setMyAddress}>
               Set My Address
             </button>
           </div>
@@ -125,7 +131,8 @@ export default function Withdraw(prop) {
           <span className="text-yellow-400/80 font-bold text-sm mt-2 ml-1 text-center">
             Make sure you insert a wallet address.
             <br />
-            Withdrawing directly to an exchange address may result in asset loss.
+            Withdrawing directly to an exchange address may result in asset
+            loss.
           </span>
         </div>
 
