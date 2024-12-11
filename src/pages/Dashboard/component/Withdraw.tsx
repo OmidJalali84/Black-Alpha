@@ -30,7 +30,7 @@ export default function Withdraw(prop) {
     setLoading(true);
     try {
       const withdrawTransaction = await withdraw(
-        parseFloat(e.target.amount.value),
+        e.target.amount.value,
         e.target.recepient.value,
         isDai
       );

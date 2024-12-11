@@ -27,13 +27,13 @@ export default function Footer() {
             </div>
             <div className={"flex flex-col items-center w-60"}>
               <span className={"text-2xl"}>Today User Count</span>
-              <span className={"text-2xl font-bold text-center text-green-600"}>
+              <span className={"text-2xl font-bold text-center text-secondary"}>
                 {contractInfo?.[3] || "0"}
               </span>
             </div>
             <div className={"flex flex-col items-center w-60"}>
               <span className={"text-2xl"}>Today Entrance</span>
-              <span className={"text-2xl font-bold text-center text-secondary"}>
+              <span className={"text-2xl font-bold text-center text-green-600"}>
                 {contractInfo?.[4] || "0$"}
               </span>
             </div>

@@ -30,7 +30,7 @@ export default function ContractDataLine() {
           <span className={"text-secondary"}>
             <CurrencyExchangeIcon />
           </span>
-          <p>Total Entrance</p>
+          <p style={{ fontSize: "15px" }}>Total Entrance</p>
           <span className={"text-secondary"}>{contractInfo?.[2] || "0$"}</span>
         </div>
         <div
